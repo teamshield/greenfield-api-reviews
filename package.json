@@ -1,0 +1,22 @@
+{
+  "name": "greenfield-api-reviews",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teamshield/greenfield-api-reviews.git"
+  },
+  "author": "Kevin Park",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teamshield/greenfield-api-reviews/issues"
+  },
+  "homepage": "https://github.com/teamshield/greenfield-api-reviews#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
