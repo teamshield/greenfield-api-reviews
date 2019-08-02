@@ -15,6 +15,11 @@ app.get("/", (request, response) => {
   response.json({ info: "Node.js, Express, and Postgres API" });
 });
 
+app.get("/poop", (request, response) => {
+  response.json({ info: "poop" });
+});
+
+
 app.get("/get777reviews", (req, res) => {
   get777Reviews((err, data) => {
     if (err) {
