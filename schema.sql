@@ -64,8 +64,9 @@ ADD COLUMN photos TEXT[];
 UPDATE reviews SET photos = array(
 SELECT reviews_photos.url
 FROM reviews_photos
-WHERE reviews_photos.id = reviews.id
-) WHERE reviews.id > 0 AND reviews.id <5777922;
+WHERE reviews_photos.review_id = reviews.id
+) WHERE reviews.id > 0 AND reviews.id < 5777922;
+
 
 
 
