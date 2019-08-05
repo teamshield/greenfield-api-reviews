@@ -40,6 +40,28 @@ CREATE TABLE reviews_photos
   url VARCHAR(400)
 );
 
+CREATE INDEX ON characteristics (product_id);
+CREATE INDEX ON reviews (product_id);
+CREATE INDEX ON characteristic_reviews (review_id);
+CREATE INDEX ON reviews_photos (review_id);
+
+
+
+-- create temporary table temp_reviews as
+-- select id, product_id, -- all columns but photos
+--   array(
+-- SELECT rp.url
+-- FROM reviews_photos rp
+-- WHERE rp.id = reviews.id
+-- ) as photos
+--     from reviews;
+
+
+-- insert into reviews
+--   (id, product_id, photos)
+-- select id, product_id, photo
+-- from temp_reviews;
+
 
 COPY characteristics FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/characteristics.csv' DELIMITERS ',' CSV header;
 COPY reviews FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/reviews.csv' DELIMITERS ',' CSV header;
