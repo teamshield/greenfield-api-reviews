@@ -40,32 +40,34 @@ CREATE TABLE reviews_photos
   url VARCHAR(400)
 );
 
-CREATE INDEX ON characteristics (product_id);
-CREATE INDEX ON reviews (product_id);
-CREATE INDEX ON characteristic_reviews (review_id);
-CREATE INDEX ON reviews_photos (review_id);
 
 
 
--- create temporary table temp_reviews as
--- select id, product_id, -- all columns but photos
---   array(
--- SELECT rp.url
--- FROM reviews_photos rp
--- WHERE rp.id = reviews.id
--- ) as photos
---     from reviews;
-
-
--- insert into reviews
---   (id, product_id, photos)
--- select id, product_id, photo
--- from temp_reviews;
-
+CREATE INDEX ON characteristics
+(product_id);
+CREATE INDEX ON reviews
+(product_id);
+CREATE INDEX ON characteristic_reviews
+(review_id);
+CREATE INDEX ON reviews_photos
+(review_id);
 
 COPY characteristics FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/characteristics.csv' DELIMITERS ',' CSV header;
-COPY reviews FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/reviews.csv' DELIMITERS ',' CSV header;
 COPY characteristic_reviews FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/characteristic_reviews.csv' DELIMITERS ',' CSV header;
 COPY reviews_photos FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/reviews_photos.csv' DELIMITERS ',' CSV header;
+COPY reviews FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/reviews.csv' DELIMITERS ',' CSV header;
+
+ALTER TABLE reviews
+ADD COLUMN photos TEXT[];
+
+
+UPDATE reviews SET photos = array(
+SELECT reviews_photos.url
+FROM reviews_photos
+WHERE reviews_photos.id = reviews.id
+) WHERE reviews.id > 0 AND reviews.id <5777922;
+
+
+
 
 -- psql postgres -U kevypark -a -f schema.sql
