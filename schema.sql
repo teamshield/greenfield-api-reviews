@@ -48,10 +48,20 @@ COPY reviews FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-re
 
 CREATE INDEX ON characteristics
 (product_id);
+CREATE INDEX ON characteristics
+(id);
 CREATE INDEX ON reviews
 (product_id);
+CREATE INDEX ON reviews
+(id);
+CREATE INDEX ON characteristic_reviews
+(id);
 CREATE INDEX ON characteristic_reviews
 (review_id);
+CREATE INDEX ON characteristic_reviews
+(characteristic_id);
+CREATE INDEX ON reviews_photos
+(id);
 CREATE INDEX ON reviews_photos
 (review_id);
 
@@ -99,6 +109,7 @@ SELECT array_agg(characteristics.id)
 FROM characteristics
 WHERE characteristics.product_id = reviews.product_id
 ) WHERE reviews.id > 0 AND reviews.id < 100;
+
 
 
 
