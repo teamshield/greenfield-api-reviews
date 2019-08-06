@@ -64,8 +64,45 @@ UPDATE reviews SET photos = array(
 SELECT reviews_photos.url
 FROM reviews_photos
 WHERE reviews_photos.review_id = reviews.id
-) WHERE reviews.id > 0 AND reviews.id < 5777922;
+) WHERE reviews.id > 0 AND reviews.id < 100;
 
+
+
+
+ALTER TABLE reviews
+ADD COLUMN value INTEGER[];
+
+
+UPDATE reviews SET value = array(
+SELECT characteristic_reviews.value
+FROM characteristic_reviews
+WHERE characteristic_reviews.review_id = reviews.id
+) WHERE reviews.id > 0 AND reviews.id < 100;
+
+
+
+ALTER TABLE reviews
+ADD COLUMN characteristics_name CHARACTER VARYING;
+
+UPDATE reviews SET characteristics_name = (
+SELECT json_agg(characteristics.name)
+FROM characteristics
+WHERE characteristics.product_id = reviews.product_id
+) WHERE reviews.id > 0 AND reviews.id < 100;
+
+
+ALTER TABLE reviews
+ADD COLUMN characteristics_id INTEGER[];
+
+UPDATE reviews SET characteristics_id = (
+SELECT array_agg(characteristics.id)
+FROM characteristics
+WHERE characteristics.product_id = reviews.product_id
+) WHERE reviews.id > 0 AND reviews.id < 100;
+
+
+
+-- 5777922
 
 
 -- psql postgres -U kevypark -a -f schema.sql

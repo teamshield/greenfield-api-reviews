@@ -1,5 +1,5 @@
 const pool = require("./connection.js");
-//review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness,
+
 
 const getReviewsList = (id, count) => {
   let organizedData = { product: id, page: 0, count: count, results: [] };
@@ -19,7 +19,7 @@ const getReviewsList = (id, count) => {
 
 const getReviewsMetadata  = (id, count) => {
   let organizedData = {product_id: id};
-  return pool.query()
+  return pool.query('SELECT rating, recommend, ')
 }
 
 module.exports = {
