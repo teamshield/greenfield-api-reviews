@@ -70,10 +70,10 @@ WHERE reviews_photos.review_id = reviews.id
 
 
 ALTER TABLE reviews
-ADD COLUMN value INTEGER[];
+ADD COLUMN characteristics_value INTEGER[];
 
 
-UPDATE reviews SET value = array(
+UPDATE reviews SET characteristics_value = array(
 SELECT characteristic_reviews.value
 FROM characteristic_reviews
 WHERE characteristic_reviews.review_id = reviews.id
@@ -85,7 +85,7 @@ ALTER TABLE reviews
 ADD COLUMN characteristics_name CHARACTER VARYING;
 
 UPDATE reviews SET characteristics_name = (
-SELECT json_agg(characteristics.name)
+SELECT array_agg(characteristics.name)
 FROM characteristics
 WHERE characteristics.product_id = reviews.product_id
 ) WHERE reviews.id > 0 AND reviews.id < 100;
