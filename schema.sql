@@ -41,7 +41,10 @@ CREATE TABLE reviews_photos
 );
 
 
-
+COPY characteristics FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/characteristics.csv' DELIMITERS ',' CSV header;
+COPY characteristic_reviews FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/characteristic_reviews.csv' DELIMITERS ',' CSV header;
+COPY reviews_photos FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/reviews_photos.csv' DELIMITERS ',' CSV header;
+COPY reviews FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/reviews.csv' DELIMITERS ',' CSV header;
 
 CREATE INDEX ON characteristics
 (product_id);
@@ -52,10 +55,6 @@ CREATE INDEX ON characteristic_reviews
 CREATE INDEX ON reviews_photos
 (review_id);
 
-COPY characteristics FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/characteristics.csv' DELIMITERS ',' CSV header;
-COPY characteristic_reviews FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/characteristic_reviews.csv' DELIMITERS ',' CSV header;
-COPY reviews_photos FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/reviews_photos.csv' DELIMITERS ',' CSV header;
-COPY reviews FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/reviews.csv' DELIMITERS ',' CSV header;
 
 ALTER TABLE reviews
 ADD COLUMN photos TEXT[];
@@ -66,8 +65,6 @@ SELECT reviews_photos.url
 FROM reviews_photos
 WHERE reviews_photos.review_id = reviews.id
 ) WHERE reviews.id > 0 AND reviews.id < 5777922;
-
-
 
 
 

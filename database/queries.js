@@ -17,6 +17,11 @@ const getReviewsList = (id, count) => {
     });
 };
 
+const getReviewsMetadata  = (id, count) => {
+  let organizedData = {product_id: id};
+  return pool.query()
+}
+
 module.exports = {
   getReviewsList
 };
