@@ -112,7 +112,17 @@ WHERE characteristics.product_id = reviews.product_id
 
 
 
+ALTER TABLE reviews
+ADD COLUMN total_ratings INTEGER[];
 
+UPDATE reviews SET total_ratings = array(
+SELECT rating
+FROM reviews
+WHERE product_id = 5
+);
+
+
+-- select array_agg(rating) from reviews where product_id=5 group by product_id;
 -- 5777922
 
 

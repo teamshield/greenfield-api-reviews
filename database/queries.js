@@ -25,14 +25,19 @@ const getReviewsMetadata = id => {
   };
   return pool
     .query(
-      "SELECT rating, recommend, characteristics_name, characteristics_id, characteristics_value FROM reviews WHERE id = $1",
+      "SELECT recommend, characteristics_name, characteristics_id, characteristics_value, total_ratings FROM reviews WHERE id = $1",
       [id]
     )
     .then(data => {
+      console.log(data.rows);
+
       //handling ratings
-      if (organizedData.ratings.hasOwnProperty(data.rows[0].rating)) {
-        organizedData.ratings[data.rows[0].rating]++;
+      for(let i = 0; i < data.rows[0].total_ratings.length; i++) {
+        if (organizedData.ratings.hasOwnProperty(data.rows[0].total_ratings[i])) {
+          organizedData.ratings[data.rows[0].total_ratings[i]]++;
+        }
       }
+      
 
       //handling recommended
       if (data.rows[0].recommend === true) {
