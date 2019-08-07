@@ -46,7 +46,7 @@ const getReviewsMetadata = id => {
         }
       }
       //trimming charName
-      let characteristicsName = data.rows[0].characteristics_name;
+      let characteristicsName = data.rows[data.rows.length - 1].characteristics_name;
       characteristicsName = characteristicsName.slice(0, -1);
       characteristicsName = characteristicsName.substring(1);
 
