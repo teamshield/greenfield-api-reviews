@@ -112,31 +112,6 @@ WHERE characteristics.product_id = reviews.product_id
 ) WHERE reviews.id > 0 AND reviews.id < 100;
 
 
-
-
--- ALTER TABLE reviews
--- ADD COLUMN total_ratings INTEGER[];
-
--- UPDATE reviews SET total_ratings = array(
--- SELECT rating
--- FROM reviews
--- WHERE product_id = 5
--- ) WHERE reviews.id > 0 AND reviews.id < 100;
-
-
-
--- ALTER TABLE reviews
--- ADD COLUMN total_recommended BOOLEAN[];
-
--- UPDATE reviews SET total_recommended = array(
--- SELECT recommend
--- FROM reviews
--- WHERE product_id = 5
--- ) WHERE reviews.id > 0 AND reviews.id < 100;
-
-
-
-
 -- 5777922
 
 
