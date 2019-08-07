@@ -46,7 +46,8 @@ const getReviewsMetadata = id => {
         }
       }
       //trimming charName
-      let characteristicsName = data.rows[data.rows.length - 1].characteristics_name;
+      let characteristicsName =
+        data.rows[data.rows.length - 1].characteristics_name;
       characteristicsName = characteristicsName.slice(0, -1);
       characteristicsName = characteristicsName.substring(1);
 
@@ -77,7 +78,11 @@ const getReviewsMetadata = id => {
         return Math.round((ele / preAveragedCharValue.length) * 100) / 100;
       });
       // handling characteristics
-      for (let i = 0; i < data.rows[data.rows.length - 1].characteristics_id.length; i++) {
+      for (
+        let i = 0;
+        i < data.rows[data.rows.length - 1].characteristics_id.length;
+        i++
+      ) {
         organizedData.characteristics[characteristicsName.split(",")[i]] = {
           id: data.rows[data.rows.length - 1].characteristics_id[i],
           value: averagedCharValueArr[i].toString()
@@ -93,26 +98,27 @@ const getReviewsMetadata = id => {
 
 const postAddReview = data => {
   console.log(data);
-  return pool.query(
-    "INSERT INTO reviews (product_id, rating, body, recommend, characteristics_id, characteristics_value, reviewer_name, reviewer_email, photos) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
-    [
-      data.id,
-      data.rating,
-      data.body,
-      data.recommend,
-      Object.keys(data.characteristics),
-      Object.values(data.characteristics),
-      data.name,
-      data.email,
-      data.photos
-    ]
-  )
-  .then(data => {
-    return data;
-  })
-  .catch(err => {
-    return err;
-  })
+  return pool
+    .query(
+      "INSERT INTO reviews (product_id, rating, body, recommend, characteristics_id, characteristics_value, reviewer_name, reviewer_email, photos) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+      [
+        data.id,
+        data.rating,
+        data.body,
+        data.recommend,
+        Object.keys(data.characteristics),
+        Object.values(data.characteristics),
+        data.name,
+        data.email,
+        data.photos
+      ]
+    )
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      return err;
+    });
 };
 
 module.exports = {
