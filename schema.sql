@@ -12,7 +12,7 @@ CREATE TABLE characteristics
 );
 CREATE TABLE reviews
 (
-  id INTEGER,
+  id SERIAL,
   product_id INTEGER,
   rating INTEGER,
   date DATE,
@@ -112,7 +112,11 @@ WHERE characteristics.product_id = reviews.product_id
 ) WHERE reviews.id > 0 AND reviews.id < 100;
 
 
--- 5777922
+SELECT pg_catalog.setval(pg_get_serial_sequence('reviews', 'id'), (SELECT MAX(id) FROM reviews)+1);
+
 
 
 -- psql postgres -U kevypark -a -f schema.sql
+
+
+-- INSERT INTO reviews (product_id, rating, photos, characteristics_id, characteristics_value) VALUES (2,1,array['s'] ,array[5], array[1]);

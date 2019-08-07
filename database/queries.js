@@ -29,6 +29,7 @@ const getReviewsMetadata = id => {
       [id]
     )
     .then(data => {
+      console.log(data.rows);
       //handling ratings
       for (let i = 0; i < data.rows.length; i++) {
         if (organizedData.ratings.hasOwnProperty(data.rows[i].rating)) {
@@ -79,7 +80,7 @@ const getReviewsMetadata = id => {
       for (let i = 0; i < data.rows[0].characteristics_id.length; i++) {
         organizedData.characteristics[characteristicsName.split(",")[i]] = {
           id: data.rows[0].characteristics_id[i],
-          value: averagedCharValueArr[i]
+          value: averagedCharValueArr[i].toString()
         };
       }
 
