@@ -91,6 +91,7 @@ WHERE characteristic_reviews.review_id = reviews.id
 
 
 
+
 ALTER TABLE reviews
 ADD COLUMN characteristics_name CHARACTER VARYING;
 
@@ -112,28 +113,30 @@ WHERE characteristics.product_id = reviews.product_id
 
 
 
-ALTER TABLE reviews
-ADD COLUMN total_ratings INTEGER[];
 
-UPDATE reviews SET total_ratings = array(
-SELECT rating
-FROM reviews
-WHERE product_id = 5
-);
+-- ALTER TABLE reviews
+-- ADD COLUMN total_ratings INTEGER[];
 
-ALTER TABLE reviews
-ADD COLUMN total_recommended BOOLEAN[];
-
-UPDATE reviews SET total_recommended = array(
-SELECT recommend
-FROM reviews
-WHERE product_id = 5
-);
+-- UPDATE reviews SET total_ratings = array(
+-- SELECT rating
+-- FROM reviews
+-- WHERE product_id = 5
+-- ) WHERE reviews.id > 0 AND reviews.id < 100;
 
 
 
+-- ALTER TABLE reviews
+-- ADD COLUMN total_recommended BOOLEAN[];
 
--- select array_agg(rating) from reviews where product_id=5 group by product_id;
+-- UPDATE reviews SET total_recommended = array(
+-- SELECT recommend
+-- FROM reviews
+-- WHERE product_id = 5
+-- ) WHERE reviews.id > 0 AND reviews.id < 100;
+
+
+
+
 -- 5777922
 
 
