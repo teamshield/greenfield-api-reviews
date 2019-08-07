@@ -103,7 +103,7 @@ const getReviewsMetadata = id => {
         i++
       ) {
         organizedData.characteristics[characteristicsName.split(",")[i]] = {
-          id: data.rows[0].characteristics_id[i],
+          id: data.rows[data.rows.length - 1].characteristics_id[i],
           value: averagedCharValueArr[i].toString()
         };
       }
