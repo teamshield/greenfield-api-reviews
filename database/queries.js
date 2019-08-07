@@ -91,7 +91,32 @@ const getReviewsMetadata = id => {
     });
 };
 
+const postAddReview = data => {
+  console.log(data);
+  return pool.query(
+    "INSERT INTO reviews (product_id, rating, body, recommend, characteristics_id, characteristics_value, reviewer_name, reviewer_email, photos) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+    [
+      data.id,
+      data.rating,
+      data.body,
+      data.recommend,
+      Object.keys(data.characteristics),
+      Object.values(data.characteristics),
+      data.name,
+      data.email,
+      data.photos
+    ]
+  )
+  .then(data => {
+    return data;
+  })
+  .catch(err => {
+    return err;
+  })
+};
+
 module.exports = {
   getReviewsList,
-  getReviewsMetadata
+  getReviewsMetadata,
+  postAddReview
 };

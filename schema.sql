@@ -119,4 +119,3 @@ SELECT pg_catalog.setval(pg_get_serial_sequence('reviews', 'id'), (SELECT MAX(id
 -- psql postgres -U kevypark -a -f schema.sql
 
 
--- INSERT INTO reviews (product_id, rating, photos, characteristics_id, characteristics_value) VALUES (2,1,array['s'] ,array[5], array[1]);
