@@ -10,6 +10,7 @@ CREATE TABLE characteristics
   product_id INTEGER,
   name VARCHAR(10)
 );
+
 CREATE TABLE reviews
 (
   id SERIAL,
@@ -25,6 +26,7 @@ CREATE TABLE reviews
   response VARCHAR(150),
   helpfulness INTEGER
 );
+
 CREATE TABLE characteristic_reviews
 (
   id INTEGER,
@@ -39,7 +41,6 @@ CREATE TABLE reviews_photos
   review_id INTEGER,
   url VARCHAR(400)
 );
-
 
 COPY characteristics FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/characteristics.csv' DELIMITERS ',' CSV header;
 COPY characteristic_reviews FROM '/Users/kevypark/Desktop/hrnyc23/Team Shield/greenfield-api-reviews/seed-data/characteristic_reviews.csv' DELIMITERS ',' CSV header;
@@ -65,10 +66,8 @@ CREATE INDEX ON reviews_photos
 CREATE INDEX ON reviews_photos
 (review_id);
 
-
 ALTER TABLE reviews
 ADD COLUMN photos TEXT[];
-
 
 UPDATE reviews SET photos = array(
 SELECT reviews_photos.url
@@ -76,21 +75,14 @@ FROM reviews_photos
 WHERE reviews_photos.review_id = reviews.id
 ) WHERE reviews.id > 0 AND reviews.id < 100;
 
-
-
-
 ALTER TABLE reviews
 ADD COLUMN characteristics_value INTEGER[];
-
 
 UPDATE reviews SET characteristics_value = array(
 SELECT characteristic_reviews.value
 FROM characteristic_reviews
 WHERE characteristic_reviews.review_id = reviews.id
 ) WHERE reviews.id > 0 AND reviews.id < 100;
-
-
-
 
 ALTER TABLE reviews
 ADD COLUMN characteristics_name CHARACTER VARYING;
@@ -101,7 +93,6 @@ FROM characteristics
 WHERE characteristics.product_id = reviews.product_id
 ) WHERE reviews.id > 0 AND reviews.id < 100;
 
-
 ALTER TABLE reviews
 ADD COLUMN characteristics_id INTEGER[];
 
@@ -111,10 +102,8 @@ FROM characteristics
 WHERE characteristics.product_id = reviews.product_id
 ) WHERE reviews.id > 0 AND reviews.id < 100;
 
-
-SELECT pg_catalog.setval(pg_get_serial_sequence('reviews', 'id'), (SELECT MAX(id) FROM reviews)+1);
-
-
+SELECT pg_catalog.setval(pg_get_serial_sequence('reviews', 'id'), (SELECT MAX(id)
+  FROM reviews)+1);
 
 -- psql postgres -U kevypark -a -f schema.sql
 
