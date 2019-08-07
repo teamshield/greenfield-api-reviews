@@ -73,8 +73,28 @@ const getReviewsMetadata = id => {
         }
       }
 
-      let averagedCharValueArr = nonDividedCharValueArr.map(ele => {
-        return Math.round((ele / preAveragedCharValue.length) * 100) / 100;
+      //keeps track of # occurance of indexes at each characteristic value for averageCharValueArr
+      let valueOccurance = [0, 0, 0, 0];
+      for (let i = 0; i < data.rows.length; i++) {
+        for (let j = 0; j < data.rows[i].characteristics_value.length; j++) {
+          if (data.rows[i].characteristics_value[j]) {
+            valueOccurance[j]++;
+          }
+        }
+      }
+
+      //averages out my char values
+      let averagedCharValueArr = nonDividedCharValueArr.map((ele, i) => {
+        return (
+          Math.round(
+            (ele /
+              valueOccurance.slice(
+                0,
+                data.rows[data.rows.length - 1].characteristics_value.length
+              )[i]) *
+              100
+          ) / 100
+        );
       });
       // handling characteristics
       for (
