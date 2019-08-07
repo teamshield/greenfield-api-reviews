@@ -36,7 +36,6 @@ const getReviewsMetadata = id => {
           organizedData.ratings[data.rows[i].rating]++;
         }
       }
-
       //handling recommended
       for (let i = 0; i < data.rows.length; i++) {
         if (data.rows[i].recommend === true) {
@@ -46,7 +45,8 @@ const getReviewsMetadata = id => {
         }
       }
       //trimming charName
-      let characteristicsName = data.rows[data.rows.length-1].characteristics_name;
+      let characteristicsName =
+        data.rows[data.rows.length - 1].characteristics_name;
       characteristicsName = characteristicsName.slice(0, -1);
       characteristicsName = characteristicsName.substring(1);
 
@@ -77,7 +77,11 @@ const getReviewsMetadata = id => {
         return Math.round((ele / preAveragedCharValue.length) * 100) / 100;
       });
       // handling characteristics
-      for (let i = 0; i < data.rows[data.rows.length-1].characteristics_id.length; i++) {
+      for (
+        let i = 0;
+        i < data.rows[data.rows.length - 1].characteristics_id.length;
+        i++
+      ) {
         organizedData.characteristics[characteristicsName.split(",")[i]] = {
           id: data.rows[0].characteristics_id[i],
           value: averagedCharValueArr[i].toString()
