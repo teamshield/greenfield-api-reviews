@@ -73,6 +73,11 @@ app.put("/reviews/report/:review_id", (req, res) => {
     });
 });
 
+
+
+app.get('/loaderio-60f9b7f24200837904a3decf804e2879/', (req, res) => {
+  res.sendFile(__dirname + '/loader/loaderio-60f9b7f24200837904a3decf804e2879.txt')
+})
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
