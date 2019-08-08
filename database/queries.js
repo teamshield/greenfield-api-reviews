@@ -1,11 +1,11 @@
 const pool = require("./connection.js");
 
-const getReviewsList = (id, count) => {
-  let organizedData = { product: id, page: 0, count: count, results: [] };
+const getReviewsList = productId => {
+  let organizedData = { product: productId, page: 0, count: 5, results: [] };
   return pool
     .query(
-      "SELECT id as review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos FROM reviews WHERE id = $1 limit $2",
-      [id, count]
+      "SELECT id as review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos FROM reviews WHERE product_id = $1 limit 5",
+      [productId]
     )
     .then(data => {
       organizedData.results = data.rows;
@@ -29,7 +29,6 @@ const getReviewsMetadata = id => {
       [id]
     )
     .then(data => {
-      console.log(data.rows);
       //handling ratings
       for (let i = 0; i < data.rows.length; i++) {
         if (organizedData.ratings.hasOwnProperty(data.rows[i].rating)) {
@@ -115,13 +114,13 @@ const getReviewsMetadata = id => {
     });
 };
 
-const postAddReview = data => {
+const postAddReview = (data, productId) => {
   console.log(data);
   return pool
     .query(
       "INSERT INTO reviews (product_id, rating, body, recommend, characteristics_id, characteristics_value, reviewer_name, reviewer_email, photos) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
       [
-        data.id,
+        productId,
         data.rating,
         data.body,
         data.recommend,

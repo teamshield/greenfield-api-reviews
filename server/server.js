@@ -16,9 +16,8 @@ app.get("/", (request, response) => {
 });
 
 app.get(`/reviews/:product_id/list`, (req, res) => {
-  let id = req.body.params.id;
-  let count = req.body.params.count;
-  getReviewsList(id, count)
+  let productId = parseInt(req.params.product_id);
+  getReviewsList(productId)
     .then(data => {
       res.json(data);
     })
@@ -28,8 +27,8 @@ app.get(`/reviews/:product_id/list`, (req, res) => {
 });
 
 app.get("/reviews/:product_id/meta", (req, res) => {
-  let id = req.body.params.id;
-  getReviewsMetadata(id)
+  let productId = parseInt(req.params.product_id);
+  getReviewsMetadata(productId)
     .then(data => {
       res.json(data);
     })
@@ -39,13 +38,18 @@ app.get("/reviews/:product_id/meta", (req, res) => {
 });
 
 app.post("/reviews/:product_id", (req, res) => {
-  postAddReview(req.body)
+  let productId = parseInt(req.params.product_id);
+  postAddReview(req.body, productId)
     .then(data => {
       res.sendStatus(201);
     })
     .catch(err => {
       res.sendStatus(400);
     });
+});
+
+app.put("/reviews/helpful/:review_id", (req, res) => {
+  console.log(req.params);
 });
 
 app.listen(port, () => {
