@@ -5,7 +5,9 @@ const port = 3000;
 const {
   getReviewsList,
   getReviewsMetadata,
-  postAddReview
+  postAddReview,
+  putIncrementHelpfulness,
+  putReported
 } = require("../database/queries.js");
 
 app.use(bodyParser.json());
@@ -17,7 +19,8 @@ app.get("/", (request, response) => {
 
 app.get(`/reviews/:product_id/list`, (req, res) => {
   let productId = parseInt(req.params.product_id);
-  getReviewsList(productId)
+  let count = req.body.count;
+  getReviewsList(productId, count)
     .then(data => {
       res.json(data);
     })
@@ -49,7 +52,27 @@ app.post("/reviews/:product_id", (req, res) => {
 });
 
 app.put("/reviews/helpful/:review_id", (req, res) => {
-  console.log(req.params);
+  let reviewId = parseInt(req.params.review_id);
+
+  putIncrementHelpfulness(reviewId)
+    .then(data => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      res.sendStatus(400);
+    });
+});
+
+app.put("/reviews/report/:review_id", (req, res) => {
+  let reviewId = parseInt(req.params.review_id);
+
+  putReported(reviewId)
+    .then(data => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      res.sendStatus(400);
+    });
 });
 
 app.listen(port, () => {

@@ -1,11 +1,11 @@
 const pool = require("./connection.js");
 
-const getReviewsList = productId => {
+const getReviewsList = (productId, count) => {
   let organizedData = { product: productId, page: 0, count: 5, results: [] };
   return pool
     .query(
-      "SELECT id as review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos FROM reviews WHERE product_id = $1 limit 5",
-      [productId]
+      "SELECT id as review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos FROM reviews WHERE product_id = $1 limit $2",
+      [productId, count]
     )
     .then(data => {
       organizedData.results = data.rows;
@@ -43,9 +43,16 @@ const getReviewsMetadata = id => {
           organizedData.recommended[0]++;
         }
       }
+
+      let longestIndex;
+      for (let i = 0; i < data.rows.length; i++) {
+        if (data.rows[i].characteristics_name) {
+          longestIndex = i;
+        }
+      }
+
       //trimming charName
-      let characteristicsName =
-        data.rows[data.rows.length - 1].characteristics_name;
+      let characteristicsName = data.rows[longestIndex].characteristics_name;
       characteristicsName = characteristicsName.slice(0, -1);
       characteristicsName = characteristicsName.substring(1);
 
@@ -89,24 +96,25 @@ const getReviewsMetadata = id => {
             (ele /
               valueOccurance.slice(
                 0,
-                data.rows[data.rows.length - 1].characteristics_value.length
+                data.rows[longestIndex].characteristics_value.length
               )[i]) *
               100
           ) / 100
         );
       });
+
       // handling characteristics
       for (
         let i = 0;
-        i < data.rows[data.rows.length - 1].characteristics_id.length;
+        i < data.rows[longestIndex].characteristics_id.length;
         i++
       ) {
         organizedData.characteristics[characteristicsName.split(",")[i]] = {
-          id: data.rows[data.rows.length - 1].characteristics_id[i],
+          id: data.rows[longestIndex].characteristics_id[i],
           value: averagedCharValueArr[i].toString()
         };
       }
-
+      console.log(data.rows);
       return organizedData;
     })
     .catch(err => {
@@ -139,8 +147,38 @@ const postAddReview = (data, productId) => {
     });
 };
 
+const putIncrementHelpfulness = reviewId => {
+  console.log(reviewId);
+  return pool
+    .query("UPDATE reviews SET helpfulness = helpfulness + 1 WHERE id = $1", [
+      reviewId
+    ])
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
+const putReported = reviewId => {
+  console.log(reviewId);
+  return pool
+    .query("UPDATE reviews SET reported = NOT reported WHERE id = $1", [
+      reviewId
+    ])
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
 module.exports = {
   getReviewsList,
   getReviewsMetadata,
-  postAddReview
+  postAddReview,
+  putIncrementHelpfulness,
+  putReported
 };

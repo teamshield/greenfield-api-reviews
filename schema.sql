@@ -16,15 +16,15 @@ CREATE TABLE reviews
   id SERIAL,
   product_id INTEGER,
   rating INTEGER,
-  date DATE,
+  date DATE DEFAULT NOW(),
   summary VARCHAR(150),
   body VARCHAR(600),
   recommend BOOL,
-  reported BOOL,
+  reported BOOL DEFAULT FALSE,
   reviewer_name VARCHAR(30),
   reviewer_email VARCHAR(40),
   response VARCHAR(150),
-  helpfulness INTEGER
+  helpfulness INTEGER DEFAULT 0
 );
 
 CREATE TABLE characteristic_reviews
