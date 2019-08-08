@@ -114,7 +114,6 @@ const getReviewsMetadata = id => {
           value: averagedCharValueArr[i].toString()
         };
       }
-      console.log(data.rows);
       return organizedData;
     })
     .catch(err => {
@@ -123,7 +122,6 @@ const getReviewsMetadata = id => {
 };
 
 const postAddReview = (data, productId) => {
-  console.log(data);
   return pool
     .query(
       "INSERT INTO reviews (product_id, rating, body, recommend, characteristics_id, characteristics_value, reviewer_name, reviewer_email, photos) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
@@ -148,7 +146,6 @@ const postAddReview = (data, productId) => {
 };
 
 const putIncrementHelpfulness = reviewId => {
-  console.log(reviewId);
   return pool
     .query("UPDATE reviews SET helpfulness = helpfulness + 1 WHERE id = $1", [
       reviewId
@@ -162,7 +159,6 @@ const putIncrementHelpfulness = reviewId => {
 };
 
 const putReported = reviewId => {
-  console.log(reviewId);
   return pool
     .query("UPDATE reviews SET reported = NOT reported WHERE id = $1", [
       reviewId
