@@ -53,7 +53,6 @@ app.post("/reviews/:product_id", (req, res) => {
 
 app.put("/reviews/helpful/:review_id", (req, res) => {
   let reviewId = parseInt(req.params.review_id);
-
   putIncrementHelpfulness(reviewId)
     .then(data => {
       res.sendStatus(201);
@@ -65,7 +64,6 @@ app.put("/reviews/helpful/:review_id", (req, res) => {
 
 app.put("/reviews/report/:review_id", (req, res) => {
   let reviewId = parseInt(req.params.review_id);
-
   putReported(reviewId)
     .then(data => {
       res.sendStatus(201);
