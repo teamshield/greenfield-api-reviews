@@ -17,13 +17,13 @@ CREATE TABLE reviews
   product_id INTEGER,
   rating INTEGER,
   date DATE DEFAULT NOW(),
-  summary VARCHAR(150),
+  summary VARCHAR(150) DEFAULT '',
   body VARCHAR(600),
   recommend BOOL,
   reported BOOL DEFAULT FALSE,
   reviewer_name VARCHAR(30),
   reviewer_email VARCHAR(40),
-  response VARCHAR(150),
+  response VARCHAR(150) DEFAULT '',
   helpfulness INTEGER DEFAULT 0
 );
 
