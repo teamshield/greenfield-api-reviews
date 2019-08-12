@@ -105,6 +105,6 @@ WHERE characteristics.product_id = reviews.product_id
 SELECT pg_catalog.setval(pg_get_serial_sequence('reviews', 'id'), (SELECT MAX(id)
   FROM reviews)+1);
 
-/* psql postgres -U kevypark -a -f schema.sql */
+-- psql postgres -U kevypark -a -f schema.sql
 
 

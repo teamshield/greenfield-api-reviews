@@ -59,6 +59,7 @@ app.put("/reviews/helpful/:review_id", (req, res) => {
     })
     .catch(err => {
       res.sendStatus(400);
+      
     });
 });
 
@@ -74,10 +75,16 @@ app.put("/reviews/report/:review_id", (req, res) => {
 });
 
 
-
+//deployment
 app.get('/loaderio-60f9b7f24200837904a3decf804e2879/', (req, res) => {
   res.sendFile('/root/greenfield-api-reviews/loader/loaderio-60f9b7f24200837904a3decf804e2879.txt')
 })
+
+app.get('/healthcheck', (req, res) => {
+  res.sendStatus(200);
+})
+
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
