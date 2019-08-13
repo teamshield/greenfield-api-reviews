@@ -77,7 +77,7 @@ app.put("/reviews/report/:review_id", (req, res) => {
 
 //deployment
 app.get('/loaderio-a4260020745ba91e932e56e447ebffd1/', (req, res) => {
-  res.sendFile('/root/greenfield-api-reviews/loader/loaderio-a4260020745ba91e932e56e447ebffd1')
+  res.sendFile('/root/greenfield-api-reviews/loader/loaderio-a4260020745ba91e932e56e447ebffd1.txt')
 })
 
 app.get('/healthcheck', (req, res) => {
