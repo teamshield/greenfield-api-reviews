@@ -10,7 +10,7 @@ The goal of this project is to replace an existing API with a back end system th
 ## Test Documentation
 
 * [Loader](https://loader.io/) - Load testing service used <br/>
-[Deployed Load Testing Documentation (https://gist.githubusercontent.com/kevypark/924d94171254c403e89b45b058391de0/raw/3bee9a114e98a2bb6913b0d0c55931edb1215b3d/010.txt)<br/>
+[Deployed Load Testing Documentation] (https://gist.githubusercontent.com/kevypark/924d94171254c403e89b45b058391de0/raw/3bee9a114e98a2bb6913b0d0c55931edb1215b3d/010.txt)<br/>
 
 
 ## Deployment
