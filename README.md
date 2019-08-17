@@ -2,10 +2,6 @@
 
 The goal of this project is to replace an existing API with a back end system that can support the full data set for the project and can scale to meet the demands of production traffic.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ## Built With
 
 * [PostgreSQL](https://www.postgresql.org/docs/11/) - The database used
