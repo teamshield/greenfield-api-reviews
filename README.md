@@ -11,6 +11,7 @@ The goal of this project is to replace an existing API with a back end system th
 * [Amazon S3](https://aws.amazon.com/s3/) - The storage service used
 ## Test Documentation
 
+* [Loader](https://loader.io/) - Load testing service used
 Explain how to run the automated tests for this system
 
 
