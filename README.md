@@ -72,7 +72,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Engineering Journal** - *Initial work* - [](https://gist.github.com/kevypark/924d94171254c403e89b45b058391de0)
+* **Engineering Journal** - https://gist.github.com/kevypark/924d94171254c403e89b45b058391de0
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
