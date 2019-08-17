@@ -6,9 +6,7 @@ The goal of this project is to replace an existing API with a back end system th
 
 * [PostgreSQL](https://www.postgresql.org/docs/11/) - The database used
 * [Express](http://expressjs.com/) - The web application framework used
-* [Amazon EC2](https://aws.amazon.com/ec2/) - The deployment service used 
-* [Amazon's Elastic Load Balancer](https://aws.amazon.com/elasticloadbalancing/) - The load balancer used
-* [Amazon S3](https://aws.amazon.com/s3/) - The storage service used
+
 ## Test Documentation
 
 * [Loader](https://loader.io/) - Load testing service used <br/>
@@ -17,7 +15,9 @@ The goal of this project is to replace an existing API with a back end system th
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+* [Amazon EC2](https://aws.amazon.com/ec2/) - The deployment service used 
+* [Amazon's Elastic Load Balancer](https://aws.amazon.com/elasticloadbalancing/) - The load balancer used
+* [Amazon S3](https://aws.amazon.com/s3/) - The storage service used
 
 
 ## Engineering Journal
