@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 ## Built With
 
 * [PostgreSQL](https://www.postgresql.org/docs/11/) - The database used
-* [Express](http://expressjs.com/) - The web framework used
+* [Express](http://expressjs.com/) - The web application framework used
 * [Amazon EC2](https://aws.amazon.com/ec2/) - The deployment service used 
 * [Amazon's Elastic Load Balancer](https://aws.amazon.com/elasticloadbalancing/) - The load balancer used
 * [Amazon S3](https://aws.amazon.com/s3/) - The storage service used
