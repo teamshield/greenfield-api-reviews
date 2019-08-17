@@ -1,6 +1,6 @@
 # System Design: Greenfield API
 
-One Paragraph of project description goes here
+The goal of this project is to replace an existing API with a back end system that can support the full data set for the project and can scale to meet the demands of production traffic.
 
 ## Getting Started
 
@@ -8,10 +8,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
+* [PostgreSQL](https://www.postgresql.org/docs/11/) - The database used
+* [Express](http://expressjs.com/) - The web framework used
+* [Amazon EC2](https://aws.amazon.com/ec2/) - The deployment service used 
+* [Amazon S3](https://aws.amazon.com/s3/) - The storage service used
+* [Amazon's Elastic Load Balancer](https://aws.amazon.com/elasticloadbalancing/) - The load balancer used
 ## Test Documentation
 
 Explain how to run the automated tests for this system
