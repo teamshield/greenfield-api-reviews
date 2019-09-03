@@ -5,7 +5,7 @@ The goal of this project is to replace an existing API with a back end system th
 ## Built With
 
 * [PostgreSQL](https://www.postgresql.org/docs/11/) - The database used
-* [Express](http://expressjs.com/) - The web application framework used
+* [Express](http://expressjs.com/) - The server framework used
 
 ## Test Documentation
 
